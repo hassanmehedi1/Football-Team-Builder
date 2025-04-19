@@ -1,15 +1,27 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  // Important: Point to files using Tailwind classes
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {}, // Add custom theme extensions here if needed
+    extend: {
+      keyframes: {
+        pulseGlow: {
+          "0%, 100%": {
+            opacity: 0.7,
+            boxShadow: "0 0 5px 2px rgba(76, 175, 80, 0.5)",
+          },
+          "50%": {
+            opacity: 1,
+            boxShadow: "0 0 10px 4px rgba(76, 175, 80, 0.8)",
+          },
+        },
+      },
+      animation: {
+        pulseGlow: "pulseGlow 1.5s ease-in-out infinite",
+      },
+    },
   },
   plugins: [],
-  // Optional: Add prefix to avoid clashes with MUI if needed, though often not necessary with careful use
-  // prefix: 'tw-',
-  // Important: To work nicely with MUI's styling engine
   corePlugins: {
-    preflight: false, // Disable Tailwind's base resets if using MUI's CssBaseline
+    preflight: false,
   },
 };

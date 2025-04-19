@@ -1,0 +1,50 @@
+.player-card {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-card-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+
+.player-card-media {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  min-width: 0;
+}
+
+.player-text {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player-club-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+.club-logo {
+  height: 16px;
+  width: 16px;
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+
+.club-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
