@@ -9,6 +9,7 @@ import Avatar from "@mui/material/Avatar";
 import { AppContext } from "../../contexts/AppContext";
 import PlaceholderImg from "../../assets/images/placeholder.png";
 import { formatMarketValue, formatAge } from "../../utils/helpers";
+import { Grid } from "@mui/material";
 
 // Style for the modal content
 const style = {
