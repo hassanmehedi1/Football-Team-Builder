@@ -87,7 +87,7 @@ function PlayerGrid() {
   const fetchPlayers = useCallback(
     async (currentPage, isNewSearchOrFilter = false) => {
       // Don't fetch from API if we're in team building view
-      if (isBuildingTeam) return;
+      // if (isBuildingTeam) return;
 
       setLoading(true);
       setError(null);
