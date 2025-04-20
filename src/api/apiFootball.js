@@ -56,13 +56,14 @@ export const getPlayerDetails = async (playerId, season = defaultSeason) => {
 
 export const getCountries = async () => {
   try {
+    // Cache this result in context/state as it rarely changes
     const response = await apiFootballInstance.get("/countries");
     return (response.response || [])
       .filter((c) => c.name)
-      .sort((a, b) => a.name.localeCompare(b.name)); // Sorting alphabetically
+      .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically
   } catch (error) {
     console.error("Error fetching countries:", error);
-    return [];
+    return []; // Return empty array on error
   }
 };
 
@@ -71,6 +72,7 @@ export const getTeams = async (
   season = defaultSeason
 ) => {
   try {
+    // Caching this result
     const params = { league, season };
     const response = await apiFootballInstance.get("/teams", { params });
     return (response.response || [])
@@ -90,7 +92,7 @@ export const getLeagues = async () => {
   try {
     const response = await apiFootballInstance.get("/leagues");
     return (response.response || [])
-      .map((item) => item.league)
+      .map((item) => item.league) // Extract the 'league' object
       .filter((l) => l.id && l.name)
       .sort((a, b) => a.name.localeCompare(b.name));
   } catch (error) {
