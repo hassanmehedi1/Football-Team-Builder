@@ -35,6 +35,9 @@ To run this project locally, follow these steps:
     ```bash
     git clone https://github.com/hassanmehedi1/Football-Team-Builder.git
     cd Football-Team-Builder
+
+    # Pull the submodules
+git submodule update --init --recursive
     ```
 
 2.  **Install dependencies:**
