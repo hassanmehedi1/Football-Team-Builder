@@ -45,7 +45,7 @@ function TeamSlot({ slotId, slotType, player }) {
     <Tooltip title={tooltipTitle} placement="top" arrow>
       <Box
         onClick={handleSlotClick}
-        className={`relative flex flex-col items-center justify-center text-center p-1 rounded-lg border min-h-[90px] md:min-h-[100px] transition-all duration-200 ease-in-out ${
+        className={`relative w-[80px] flex flex-col items-center justify-center text-center p-1 rounded-lg border min-h-[90px] md:min-h-[100px] transition-all duration-200 ease-in-out ${
           player
             ? "bg-green-100 border-green-300"
             : "bg-gray-100 border-dashed border-gray-400 hover:bg-gray-200"

@@ -13,37 +13,26 @@ function TeamDisplay() {
 
   if (!formation) return null;
 
-  const gridContainerStyle = {
-    display: "grid",
-    gridTemplateRows: `repeat(${formation.gridSettings.rows}, minmax(100px, auto))`,
-    gridTemplateColumns: `repeat(${formation.gridSettings.cols}, 1fr)`,
-    gap: "12px",
-    padding: "16px",
-    backgroundColor: "#388e3c",
-    border: "2px solid #1b5e20",
-    borderRadius: "8px",
-    maxWidth: "800px",
-    margin: "16px auto",
-    position: "relative",
-  };
-
-  const getSlotStyle = (slot) => ({
-    gridRow: slot.gridRow,
-    gridColumn: `${slot.gridCol} / span 1`,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  });
+  // Group slots by row, sorted by original column order for consistency
+  const slotsByRow = formation.slots.reduce((acc, slot) => {
+    const row = slot.gridRow;
+    if (!acc[row]) {
+      acc[row] = [];
+    }
+    acc[row].push(slot);
+    acc[row].sort((a, b) => a.gridCol - b.gridCol); 
+    return acc;
+  }, {});
 
   return (
     <Paper elevation={3} sx={{ mt: 3, mb: 3, overflow: "hidden" }}>
       <Box
         sx={{
           p: 1.5,
-          backgroundColor: "primary.dark",
-          color: "white",
-          borderTopLeftRadius: "4px",
-          borderTopRightRadius: "4px",
+          backgroundColor: 'primary.dark',
+          color: 'white',
+          borderTopLeftRadius: '4px',
+          borderTopRightRadius: '4px',
         }}
       >
         <Typography variant="h6" component="div" textAlign="center">
@@ -61,17 +50,31 @@ function TeamDisplay() {
           </Typography>
         </Box>
       </Box>
-      <Box sx={gridContainerStyle}>
-        {formation.slots.map((slot) => (
-          <Box key={slot.id} sx={getSlotStyle(slot)}>
-            <TeamSlot
-              slotId={slot.id}
-              slotType={slot.type}
-              player={team.players[slot.id]}
-            />
-          </Box>
+
+      <div
+        className="grid p-6 gap-y-4 border-2 border-[#1b5e20] rounded-b-lg max-w-[800px] mx-auto my-4 relative bg-[#388e3c]"
+        style={{
+          gridTemplateRows: `repeat(${formation.gridSettings.rows}, minmax(100px, auto))`,
+          gridTemplateColumns: '1fr', 
+        }}
+      >
+        {Object.entries(slotsByRow).map(([rowNumber, slotsInRow]) => (
+          <div
+            key={`row-${rowNumber}`}
+            className="flex justify-center items-center gap-x-36 w-full"
+            style={{ gridRow: rowNumber, gridColumn: '1 / -1' }} 
+          >
+            {slotsInRow.map((slot) => (
+              <TeamSlot
+                key={slot.id}
+                slotId={slot.id}
+                slotType={slot.type}
+                player={team.players[slot.id]}
+              />
+            ))}
+          </div>
         ))}
-      </Box>
+      </div>
     </Paper>
   );
 }
