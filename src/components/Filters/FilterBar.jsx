@@ -87,7 +87,7 @@ function FilterBar() {
                       {params.InputProps.endAdornment}
                     </>
                   ),
-                  style: { fontSize: "0.875rem", width: "200px" },
+                  style: { fontSize: "0.875rem", width: "150px" },
                 }}
               />
             )}
@@ -162,7 +162,7 @@ function FilterBar() {
                       {params.InputProps.endAdornment}
                     </>
                   ),
-                  style: { fontSize: "0.875rem", width: "200px" },
+                  style: { fontSize: "0.875rem", width: "150px" },
                 }}
               />
             )}
